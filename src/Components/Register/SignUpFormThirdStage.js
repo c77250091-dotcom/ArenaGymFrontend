@@ -7,7 +7,7 @@ export default function SignUpThirdStage() {
   return (
     <div
       style={{
-        height: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
@@ -27,6 +27,7 @@ export default function SignUpThirdStage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
         className="card"
+        style={{height:"400px"}}
       >
         <Header />
         <SignUp3rd />

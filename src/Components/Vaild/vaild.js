@@ -54,12 +54,13 @@ const Stage2Validation = z.object({
     (val) => Number(val),
     z
       .number()
-      .positive("Height must be a positive number").min(100, "Height must be between 100-200").max(200 , "Height must be between 100-200")
-
+      .positive("Height must be a positive number")
+      .min(100, "Height must be between 100-200")
+      .max(200, "Height must be between 100-200"),
   ),
   "Weight(kg)": z.preprocess(
     (val) => Number(val),
-    z.number().positive("Weight must be a positive number")
+    z.number().positive("Weight must be a positive number"),
   ),
   "Waist(cm)": z.preprocess(
     (val) => Number(val),
@@ -72,14 +73,12 @@ const Stage2Validation = z.object({
   FitnessLevel: z.string().min(1, "You Must Choose Your Fitness Level"),
 });
 
-
 const Stage3Validation = z.object({
   "Choose Coach": z.string().min(1, "You Must Choose Coach"),
-  "Choose MemberShip" : z.string().min(1, "You Must Choose Membership "),
-  Months: z.string().min(1, "You Must Choose Month "),
+  "Choose MemberShip": z.string().min(1, "You Must Choose Membership"),
+  Months: z.string().min(1, "You Must Choose Month"),
+  Goal: z.string().min(1, "You Must Choose Goal"),
 });
-
-
 
 export function ValidationStage3(data) {
   let result = Stage3Validation.safeParse(data);
@@ -89,7 +88,6 @@ export function ValidationStage3(data) {
     return result.error.flatten().fieldErrors;
   }
 }
-
 
 export function ValidationStage2(data) {
   let result = Stage2Validation.safeParse(data);

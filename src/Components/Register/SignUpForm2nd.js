@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import Inputs from "../Inputs";
 import { useSelector, useDispatch } from "react-redux";
 import "../CSS/Global.css";
-import { signUpSecond, submitSignUPSecond } from "../../Slices/RegisterSlice";
+import { signUpSecond, submitSignUPSecond , stageTwo } from "../../Slices/RegisterSlice";
 import { useNavigate } from "react-router-dom";
 
 const signUpFields = [
@@ -48,6 +48,11 @@ export default function SignUp2nd() {
   const step = useSelector((state) => state.data.step);
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+useEffect(() =>{
+  dispatch(stageTwo())
+},[])
+
 
   useEffect(() => {
     if (step === 2) {

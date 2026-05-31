@@ -8,7 +8,7 @@ export default function SignUpSecondStage() {
   return (
     <div
       style={{
-        height: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",

@@ -43,7 +43,7 @@ export default function MemberShips() {
   return (
     <div
       style={{
-        height: "100%",
+        height: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-around",

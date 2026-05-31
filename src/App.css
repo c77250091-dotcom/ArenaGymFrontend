@@ -5,5 +5,5 @@
 
 .App {
   background: linear-gradient(135deg, #220404, #500303, #660000);
-  height: 100vh;
+  min-height: 100vh;
 }

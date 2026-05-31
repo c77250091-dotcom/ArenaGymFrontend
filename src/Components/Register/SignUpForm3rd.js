@@ -6,6 +6,7 @@ import {
   signUpThird,
   submitSignUPThird,
   signUpRequest,
+  stageThree
 } from "../../Slices/RegisterSlice";
 import { motion } from "framer-motion";
 
@@ -31,6 +32,13 @@ const signUpFields = [
     fullWidth: true,
     isSelect: "Month",
   },
+  {
+    id: 4,
+    label: "Goal",
+    type: "select",
+    fullWidth: true,
+    isSelect: "Goal",
+  },
 ];
 
 export default function SignUp3rd() {
@@ -39,6 +47,10 @@ export default function SignUp3rd() {
   let dispatch = useDispatch();
   const isSuccess = useSelector((state) => state.data.isSuccess);
   const navigate = useNavigate();
+
+useEffect(() =>{
+  dispatch(stageThree())
+},[])
 
   useEffect(() => {
     if (isSuccess) navigate("/Dashboard");
@@ -83,7 +95,7 @@ export default function SignUp3rd() {
 
   return (
     <>
-      <div style={{ gap: "10px" }} className="signUp2nd">
+      <div style={{ gap: "7px" }} className="signUp2nd">
         {signUpFields.map((field) => (
           <div
             key={field.id}

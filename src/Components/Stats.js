@@ -10,6 +10,7 @@ export const useBasicStats = () => {
   const Name = useSelector((state) => {
     return `${state.data.signUp.FirstName} ${state.data.signUp.SecondName}`;
   });
+  let Goal = useSelector((state) => state.data.signUPstage3.Goal);
   const NM = Name.split(" ")
     .map((el) => el.slice(0, 1))
     .join("");
@@ -22,14 +23,20 @@ export const useBasicStats = () => {
   const Fitness = useSelector((state) => state.data.signUPstage2.FitnessLevel);
   const LevelOfFitness = Fitness.match(/\(([^)]+)\)/)?.[1];
   const BMR = 10 * Weight + 6.25 * Height - 5 * Age + 5;
-  const TDEE =
+  const calories =
     LevelOfFitness === "Beginner"
-      ? (BMR * 1.375).toFixed(1)
+      ? (BMR * 1.375).toFixed(0)
       : LevelOfFitness === "Intermediate"
-        ? (BMR * 1.55).toFixed(1)
+        ? (BMR * 1.55).toFixed(0)
         : LevelOfFitness === "Advanced"
-          ? (BMR * 1.725).toFixed(1)
+          ? (BMR * 1.725).toFixed(0)
           : "";
+  const TDEE =
+    Goal === "Lose Fat"
+      ? +calories - 500
+      : Goal === "Bulk"
+        ? +calories + 1000
+        : +calories;
   const BMICalc = (Weight / (Height * 10 ** -2) ** 2).toFixed(1);
   const BMI =
     BMICalc < 18.5
@@ -73,7 +80,7 @@ export const useBasicStats = () => {
 };
 
 export const useProfileStats = () => {
-  const FirstName = useSelector((state) => state.data.signUp.FirstName)
+  const FirstName = useSelector((state) => state.data.signUp.FirstName);
   const Name = useSelector((state) => {
     return `${state.data.signUp.FirstName} ${state.data.signUp.SecondName}`;
   });
@@ -87,18 +94,17 @@ export const useProfileStats = () => {
   const MemberShip = useSelector(
     (state) => state.data.signUPstage3["Choose MemberShip"],
   );
-  return{
+  return {
     FirstName,
-      Name: Name.split(" ")
-        .map((el) => el[0].toUpperCase() + el.slice(1))
-        .join(" "),
+    Name: Name.split(" ")
+      .map((el) => el[0].toUpperCase() + el.slice(1))
+      .join(" "),
     NM,
-     Age,
-     LevelOfFitness,
-     Coach,
-      MemberShip: MemberShip.split("(")[0],
-    }
-
+    Age,
+    LevelOfFitness,
+    Coach,
+    MemberShip: MemberShip.split("(")[0],
+  };
 };
 
 export const useBodyStats = () => {
@@ -107,31 +113,99 @@ export const useBodyStats = () => {
   const Waist = useSelector((state) => state.data.signUPstage2["Waist(cm)"]);
   const Neck = useSelector((state) => state.data.signUPstage2["Neck(cm)"]);
   const BodyFats = (
-  495 / (
-    1.0324 -
-    0.19077 * Math.log10(Waist - Neck) +
-    0.15456 * Math.log10(Height)
-  ) - 450
-).toFixed(1);
+    495 /
+      (1.0324 -
+        0.19077 * Math.log10(Waist - Neck) +
+        0.15456 * Math.log10(Height)) -
+    450
+  ).toFixed(1);
   return {
     Height,
     Weight,
     Waist,
     Neck,
     BodyFats,
-  }
+  };
 };
 
-
-export const useCoachStats = () =>{
+export const useCoachStats = () => {
   const Coach = useSelector((state) => state.data.signUPstage3["Choose Coach"]);
-  const ChosenCoach = Trainer.find((el) => el.coach === Coach)
-  return ChosenCoach
-}
+  const ChosenCoach = Trainer.find((el) => el.coach === Coach);
+  return ChosenCoach;
+};
 
-export const useMemberShipStats = () =>{
-  const Subscription = useSelector((state) => state.data.signUPstage3["Choose MemberShip"])
-  const Sub = Subscription.split("(")[0]
-  const ChosenMemberShip = Ships.find((el) => el.MemberShipName === Sub)
-  return  ChosenMemberShip
-}
+export const useMemberShipStats = () => {
+  const Subscription = useSelector(
+    (state) => state.data.signUPstage3["Choose MemberShip"],
+  );
+  const Sub = Subscription.split("(")[0];
+  const ChosenMemberShip = Ships.find((el) => el.MemberShipName === Sub);
+  return ChosenMemberShip;
+};
+
+export const useMacrosStats = () => {
+  const Age = useSelector((state) => state.data.signUp.YourAge);
+  const Weight = useSelector((state) => state.data.signUPstage2["Weight(kg)"]);
+  const Height = useSelector((state) => state.data.signUPstage2["Height(cm)"]);
+  let Goal = useSelector((state) => state.data.signUPstage3.Goal);
+  const Fitness = useSelector((state) => state.data.signUPstage2.FitnessLevel);
+  const LevelOfFitness = Fitness.match(/\(([^)]+)\)/)?.[1];
+  const BMR = 10 * Weight + 6.25 * Height - 5 * Age + 5;
+  const calories =
+    LevelOfFitness === "Beginner"
+      ? (BMR * 1.375).toFixed(0)
+      : LevelOfFitness === "Intermediate"
+        ? (BMR * 1.55).toFixed(0)
+        : LevelOfFitness === "Advanced"
+          ? (BMR * 1.725).toFixed(0)
+          : "";
+  const TDEE =
+    Goal === "Lose Fat"
+      ? +calories - 500
+      : Goal === "Bulk"
+        ? +calories + 1000
+        : +calories;
+  const ProteinPercentage =
+    Goal === "Lose Fat" ? 0.35 : Goal === "Bulk" ? 0.3 : 0.25;
+
+  const CarbsPercentage =
+    Goal === "Lose Fat" ? 0.4 : Goal === "Bulk" ? 0.45 : 0.5;
+
+  const FatPercentage =
+    Goal === "Lose Fat" ? 0.25 : Goal === "Bulk" ? 0.25 : 0.25;
+
+  const ProteinGrams = Math.round((TDEE * ProteinPercentage) / 4);
+  const CarbsGrams = Math.round((TDEE * CarbsPercentage) / 4);
+  const FatGrams = Math.round((TDEE * FatPercentage) / 9);
+  const Message =
+    Goal === "Lose Fat"
+      ? "Calorie surplus for Body Fats Lose"
+      : Goal === "Bulk"
+        ? "Calorie surplus for lean mass gain phase"
+        : "Calorie surplus To Constant Weight";
+  const WaterIntake =
+    Weight * 0.033 +
+    (LevelOfFitness === "Beginner"
+      ? 0.3
+      : LevelOfFitness === "Intermediate"
+        ? 0.5
+        : LevelOfFitness === "Advanced"
+          ? 0.7
+          : 0) +
+    (Goal === "Bulk" ? 0.3 : 0);
+
+  return {
+    Message,
+    BMR,
+    Height,
+    Weight,
+    TDEE,
+    ProteinPercentage,
+    CarbsPercentage,
+    ProteinGrams,
+    CarbsGrams,
+    FatGrams,
+    WaterIntake: WaterIntake.toFixed(1),
+    FatPercentage,
+  };
+};

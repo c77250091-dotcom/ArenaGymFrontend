@@ -9,20 +9,9 @@ const fitnessLevels = [
   "You Train 5 or 6 Times / Week (Advanced)",
 ];
 
+const Month = ["1 MONTH", "2 MONTHS", "3 MONTHS", "6 MONTHS", "YEAR"];
 
-const Month = [
-  "1 MONTH",
-  "2 MONTHS",
-  "3 MONTHS",
-  "6 MONTHS",
-  "YEAR"
-];
-
-const MemberShips = [
-  "SLIVER(15$)",
-  "PLATINUM(30$)",
-  "GOLD(50$)",
-];
+const MemberShips = ["SLIVER(15$)", "PLATINUM(30$)", "GOLD(60$)"];
 const Coaches = [
   "Ahmed Kamal",
   "Nour Mohamed",
@@ -34,6 +23,8 @@ const Coaches = [
   "Eslam Said",
   "Youssef Omar",
 ];
+
+const Goal = ["Lose Fat", "Bulk", "Maintain"];
 
 const Inputs = memo(function Inputs({
   label,
@@ -83,16 +74,24 @@ const Inputs = memo(function Inputs({
               </MenuItem>
             ))
           : isSelect === "MemberShip"
-          ? MemberShips.map((level) => (
-              <MenuItem key={level} value={level}>
-                {level}
-              </MenuItem>
-            )): isSelect === "Month"
-          ? Month.map((level) => (
-              <MenuItem key={level} value={level}>
-                {level}
-              </MenuItem>
-            )) : false }
+            ? MemberShips.map((level) => (
+                <MenuItem key={level} value={level}>
+                  {level}
+                </MenuItem>
+              ))
+            : isSelect === "Month"
+              ? Month.map((level) => (
+                  <MenuItem key={level} value={level}>
+                    {level}
+                  </MenuItem>
+                ))
+              : isSelect === "Goal"
+                ? Goal.map((level) => (
+                    <MenuItem key={level} value={level}>
+                      {level}
+                    </MenuItem>
+                  ))
+                : false}
     </TextField>
   );
 });

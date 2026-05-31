@@ -36,6 +36,7 @@ const initialState = {
   signUPstage3: {},
   hasSubmittedStage3: false,
   isSuccess: false,
+
 };
 
 export const Data = createSlice({
@@ -44,10 +45,14 @@ export const Data = createSlice({
   reducers: {
     isRegister: (state, action) => {
       state.isRegister = !state.isRegister;
-      state.hasSubmittedLogin = false;
-      state.login = {};
       state.errors = {};
+      state.hasSubmittedLogin = false;
       state.hasSubmittedSignUp = false;
+      state.isValid = false; // ← reset valid
+      state.isSuccess = false; // ← reset success
+      state.step = 0;
+      state.login = {};
+      state.signUp = {};
     },
     login: (state, action) => {
       let { label, value } = action.payload;
@@ -119,9 +124,15 @@ export const Data = createSlice({
       }
     },
     logout: (state) => {
-        setAuthToken(null); // ← clear the token
-  return initialState
+      setAuthToken(null); // ← clear the token
+      return initialState;
     },
+    stageTwo : (state) =>{
+      state.signUPstage2 ={}
+    },
+        stageThree : (state) =>{
+      state.signUPstage3 ={}
+    }
   },
   extraReducers(builder) {
     builder
@@ -131,7 +142,7 @@ export const Data = createSlice({
       .addCase(LoginRequest.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
-        setAuthToken(action.payload.token)
+        setAuthToken(action.payload.token);
       })
       .addCase(LoginRequest.rejected, (state, action) => {
         state.loading = false;
@@ -164,5 +175,7 @@ export const {
   signUpThird,
   submitSignUPThird,
   logout,
+  stageTwo,
+  stageThree,
 } = Data.actions;
 export default Data.reducer;

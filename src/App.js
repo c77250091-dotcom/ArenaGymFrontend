@@ -3,7 +3,7 @@ import "./App.css";
 import "./Components/CSS/Global.css";
 import LoginAndSignUp from "./Components/Register/LoginAndSignUp";
 import SignUpSecondStage from "./Components/Register/SignUpFormSecondStage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SignUpThirdStage from "./Components/Register/SignUpFormThirdStage";
 import MemberShips from "./Components/MemberShip/MemberShips";
@@ -13,6 +13,10 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import MyCoach from "./Components/Dashboard/Mycoach";
 import Greeting from "./Components/Dashboard/Greeting";
 import Subscription from "./Components/Dashboard/Subscription";
+import Particles from "./Components/Particles/Particles";
+import DietPlan from "./Components/Dashboard/DietPlan";
+
+import WorkoutPlanPage from "./Components/Dashboard/WorkoutPage";
 const theme = createTheme({
   components: {
     MuiStepIcon: {
@@ -33,9 +37,25 @@ const theme = createTheme({
 });
 
 function App() {
+  const location = useLocation();
+  const hiddenParticles = location.pathname === "/Dashboard/diet";
   return (
     <ThemeProvider theme={theme}>
-      <div className="App" style={{ overflow: "hidden" }}>
+      <div className="App">
+        {!hiddenParticles && (
+          <Particles
+            particleCount={80}
+            particleSpread={2}
+            speed={0.2}
+            particleColors={["#ff0505"]}
+            moveParticlesOnHover={false}
+            alphaParticles
+            particleBaseSize={20}
+            sizeRandomness={0.1}
+            cameraDistance={17}
+            disableRotation
+          />
+        )}
         <Routes>
           <Route path="/" element={<LoginAndSignUp />} />
           <Route path="/Coaches" element={<Coaches />} />
@@ -51,6 +71,8 @@ function App() {
               <Route index element={<Greeting />} />
               <Route path="coach" element={<MyCoach />} />
               <Route path="membership" element={<Subscription />} />
+              <Route path="diet" element={<DietPlan />} />
+              <Route path="workout" element={<WorkoutPlanPage />} />
             </Route>
           </Route>
         </Routes>

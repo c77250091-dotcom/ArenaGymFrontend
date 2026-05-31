@@ -12,7 +12,7 @@ import {
 } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import Center from "../Slices/RegisterSlice";
+import Center, { signUpSecond } from "../Slices/RegisterSlice";
 import UI from "../Slices/UiSlice";
 
 const sanitizeTransform = createTransform(
@@ -41,7 +41,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["data","UI"],
+  whitelist: ["data", "UI"],
   transforms: [sanitizeTransform],
 };
 
