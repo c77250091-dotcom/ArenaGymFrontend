@@ -49,8 +49,6 @@ const Logo = memo(function Logo() {
           <button onClick={handleToggle}>
             {state ? "LogIn" : "NewMember"}
           </button>
-
-          {!state && <button>JoinAsCoach</button>}
         </Stack>
       </div>
     </motion.div>
