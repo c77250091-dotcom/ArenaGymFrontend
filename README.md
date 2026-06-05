@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# 🏋️ Arena Gym — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-featured gym management web app built with React. Users can register through a multi-step flow, getting a personalized dashboard with fitness stats, diet plans, workout splits, coach info, and membership details.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Live Demo
 
-### `npm start`
+> 🚧 Backend integration in progress. Live demo coming soon!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ⚙️ Tech Stack
 
-### `npm test`
+| Technology | Purpose |
+| :--- | :--- |
+| **React** | UI framework |
+| **Redux Toolkit** | Global state management |
+| **Redux Persist** | Persist state across sessions |
+| **React Router v6** | Client-side routing |
+| **Zod** | Form validation |
+| **Axios** | API requests |
+| **Material UI (MUI)** | UI components |
+| **Framer Motion** | Animations |
+| **Swiper.js** | Coach carousel |
+| **OGL** | WebGL particle system |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ✨ Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Multi-Step Registration:** A 3-stage signup collecting personal info, body stats, and gym preferences.
+- **Protected Routes:** Step-based route guarding prevents users from skipping registration stages.
+- **Personalized Fitness Dashboard:**
+  - TDEE & BMR calculations
+  - BMI tracking with a visual progress bar
+  - Body fat percentage estimation (Navy Method)
+  - Custom macronutrient breakdown (protein, carbs, fats)
+  - Daily water intake recommendations
+  - Custom Push/Pull/Legs (PPL) workout plan & meal breakdown
+- **Dynamic UI/UX:** Animated sliding Login/Signup interface, Swiper.js coach carousel, and an interactive WebGL particle background with route-based visibility.
+- **Secure State Persistence:** Sensitive data (like passwords) is stripped before saving to `localStorage`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🗂️ Project Structure
 
-### `npm run eject`
+```text
+src/
+├── api/
+│   └── axiosInstance.js       # Axios setup + auth token helper
+├── Center/
+│   └── store.js               # Redux store + persist config
+├── Components/
+│   ├── Coaches/               # Coaches page + Coach card
+│   ├── CSS/                   # Global styles
+│   ├── Dashboard/             # Dashboard, diet, workout, greeting, slider
+│   ├── MemberShip/            # Memberships page + card
+│   ├── Particles/             # WebGL particle system
+│   ├── Register/              # Login, signup stages 1-3
+│   ├── Routes/                # Protected route component
+│   ├── Step/                  # MUI stepper
+│   ├── Valid/                 # Zod validation schemas
+│   ├── Header.js
+│   ├── Inputs.js
+│   ├── Logo.js
+│   └── Stats.js               # Custom utility hooks (TDEE, macros, BMI)
+└── Slices/
+    └── RegisterSlice.js       # Redux slice (auth, signup, validation)
+```
+# Clone the repo
+git clone [https://github.com/c77250091-dotcom/ArenaGymFrontend.git](https://github.com/c77250091-dotcom/ArenaGymFrontend.git)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Navigate to the project
+cd ArenaGymFrontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Install dependencies
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Start the development server
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🔐 Environment Setup
+The API base URL is configured in src/api/axiosInstance.js. Update it to point to your backend production or local server:
 
-## Learn More
+👨‍💻 Author
+Built by a passionate Frontend Developer as a first major full-scale project, completed 5 months into learning programming.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📄 License
+This project is open-source and available for portfolio review purposes.
