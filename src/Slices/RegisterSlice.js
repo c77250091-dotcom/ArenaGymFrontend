@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import ValidationLogin from "../Components/Vaild/vaild";
+import ValidationLogin from "../Components/Valid/valid";
 import {
   ValidationSignUp,
   ValidationStage2,
   ValidationStage3,
-} from "../Components/Vaild/vaild";
+} from "../Components/Valid/valid";
 import instance from "../api/axiosInstance";
 import { setAuthToken } from "../api/axiosInstance";
 
@@ -36,7 +36,6 @@ const initialState = {
   signUPstage3: {},
   hasSubmittedStage3: false,
   isSuccess: false,
-
 };
 
 export const Data = createSlice({
@@ -48,8 +47,8 @@ export const Data = createSlice({
       state.errors = {};
       state.hasSubmittedLogin = false;
       state.hasSubmittedSignUp = false;
-      state.isValid = false; // ← reset valid
-      state.isSuccess = false; // ← reset success
+      state.isValid = false;
+      state.isSuccess = false;
       state.step = 0;
       state.login = {};
       state.signUp = {};
@@ -124,7 +123,7 @@ export const Data = createSlice({
       }
     },
     logout: (state) => {
-      setAuthToken(null); // ← clear the token
+      setAuthToken(null);
       return initialState;
     },
     stageTwo : (state) =>{

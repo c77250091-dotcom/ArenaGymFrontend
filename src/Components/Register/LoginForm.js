@@ -1,7 +1,12 @@
 import { useCallback, useEffect } from "react";
 import Inputs from "../Inputs";
 import { useSelector, useDispatch } from "react-redux";
-import { login, submitLogin, LoginRequest } from "../../Slices/RegisterSlice";
+import {
+  login,
+  submitLogin,
+  LoginRequest,
+  isRegister,
+} from "../../Slices/RegisterSlice";
 
 const loginFields = [
   {
@@ -21,7 +26,7 @@ const loginFields = [
   },
 ];
 
-function LoginForm() {
+function LoginForm({ isMobile }) {
   const state = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const handleLogin = useCallback(
@@ -40,7 +45,7 @@ function LoginForm() {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.isValid]);
+  }, [state.isValid, state.hasSubmittedLogin, dispatch]);
 
   const onSubmit = useCallback(() => {
     dispatch(submitLogin());
@@ -61,6 +66,16 @@ function LoginForm() {
       <button className="submitBtn" onClick={() => onSubmit()}>
         Login
       </button>
+      {isMobile.current ? (
+        <p
+          onClick={() => dispatch(isRegister())}
+          style={{ cursor: "pointer", textAlign: "center", marginTop: "10px" }}
+        >
+          Don't have an account? <span style={{ color: "red" }}>Sign Up</span>
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

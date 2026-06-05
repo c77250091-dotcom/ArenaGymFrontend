@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import "../CSS/Global.css";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -6,13 +5,13 @@ import NoFoodIcon from "@mui/icons-material/NoFood";
 import PersonIcon from "@mui/icons-material/Person";
 import StarIcon from "@mui/icons-material/Star";
 import Options from "./Options";
-import { useSelector, useDispatch } from "react-redux";
-import { option } from "../../Slices/UiSlice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { logout } from "../../Slices/RegisterSlice";
 import { persistor } from "../../Center/store";
+import { useLocation } from "react-router-dom";
 
-const options = [
+export const options = [
   {
     id: 1,
     to: "/Dashboard",
@@ -47,8 +46,8 @@ const options = [
 
 export default function Slider() {
   const navigate = useNavigate();
-  const Option = useSelector((state) => state.UI.activeOption);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   function handleLogout() {
     dispatch(logout());
@@ -86,9 +85,8 @@ export default function Slider() {
           key={el.id}
           label={el.label}
           icon={el.icon}
-          isSelect={el.id === Option}
+          isSelect={location.pathname === el.to}
           onClick={() => {
-            dispatch(option({ id: el.id }));
             navigate(el.to);
           }}
         />
@@ -98,9 +96,9 @@ export default function Slider() {
           position: "absolute",
           cursor: "pointer",
           transform: "translate(-50%,-90%)",
-          top:"90%",
-          left:"50%",
-          width:"200px"
+          top: "90%",
+          left: "50%",
+          width: "200px",
         }}
         onClick={handleLogout}
       >

@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 
 export default function SignUpThirdStage() {
   return (
-    <div
+    <div className="register"
       style={{
         height: "100vh",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
         flexDirection: "column",
+        overflow:"hidden"
       }}
     >
       <motion.div
@@ -26,7 +27,7 @@ export default function SignUpThirdStage() {
         initial={{ y: "100%", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="card"
+        className="card two"
         style={{height:"400px"}}
       >
         <Header />

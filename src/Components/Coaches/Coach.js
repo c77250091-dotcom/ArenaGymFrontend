@@ -11,28 +11,9 @@ export default function Coach({
 }) {
   return (
     <div className="Coach">
-      <header
-        style={{
-          width: "100%",
-          height: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "40px",
-        }}
-      >
+      <header className="coach-header">
         <Stack style={{ alignItems: "center" }} direction="column" spacing={1}>
-          <span
-            style={{
-              width: "70px",
-              height: "70px",
-              border: "3px rgb(229, 8, 8) solid",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <span className="coach-name">
             <p style={{ fontSize: "35px" }}>
               {Name.split(" ")
                 .map((el) => el.slice(0, 1))
@@ -49,79 +30,25 @@ export default function Coach({
               {description}
             </p>
           </Stack>
-          <p
-            style={{ fontSize: "18px", color: "yellow", letterSpacing: "2px" }}
-          >
-            ★★★★★
-          </p>
+          <p className="stars">★★★★★</p>
         </Stack>
       </header>
-      <div
-        className="Atchivments"
-        style={{ marginTop: "40px", gap: "30px", padding: "20px" }}
-      >
-        <Stack
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+      <div className="Atchivments">
+        <Stack className="experience" direction={"row"}>
           <p>Experience</p>
-          <p style={{ color: "#ff4d4d" }}>{Experience}</p>
+          <p className="red">{Experience}</p>
         </Stack>
-        <Stack
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+        <Stack className="sessions" direction={"row"}>
           <p>Sessions</p>
-          <p style={{ color: "#ff4d4d" }}>{sessions}</p>
+          <p className="red">{sessions}</p>
         </Stack>
-        <Stack
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+        <Stack className="contact" direction={"row"}>
           <p>Contact</p>
-          <p style={{ color: "#ff4d4d" }}>{contact}</p>
+          <p className="red">{contact}</p>
         </Stack>
-        <Stack
-          direction="row"
-          spacing={1}
-          style={{
-            alignItems: "center",
-            width: "100%",
-            justifyContent: "flex-start",
-          }}
-        >
+        <Stack direction="row" spacing={1}>
           {Object.values(atchivments).map((item, index) => (
-            <span
-              style={{
-                height: "25px",
-                width: "70px",
-                border: "1px solid red",
-                borderRadius: "20px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-                fontSize: "10px",
-                background: "rgba(209, 29, 29, 0.2)",
-                whiteSpace: "nowrap",
-              }}
-              key={index}
-            >
+            <span className="info-atchivments" key={index}>
               {item}
             </span>
           ))}

@@ -12,8 +12,7 @@ import {
 } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import Center, { signUpSecond } from "../Slices/RegisterSlice";
-import UI from "../Slices/UiSlice";
+import Center from "../Slices/RegisterSlice";
 
 const sanitizeTransform = createTransform(
   (inboundState) => {
@@ -30,18 +29,17 @@ const sanitizeTransform = createTransform(
   },
   // Outbound (loading from localStorage) — no changes needed
   (outboundState) => outboundState,
-  { whitelist: ["data", "UI"] },
+  { whitelist: ["data"] },
 );
 
 const rootReducer = combineReducers({
   data: Center,
-  UI: UI,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["data", "UI"],
+  whitelist: ["data"],
   transforms: [sanitizeTransform],
 };
 

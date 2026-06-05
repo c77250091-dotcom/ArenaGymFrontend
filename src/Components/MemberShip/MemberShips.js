@@ -41,14 +41,7 @@ export const Ships = [
 
 export default function MemberShips() {
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
+    <div className="viewMemberships">
       {Ships.map((el) => (
         <MemberShip
           key={el.id}

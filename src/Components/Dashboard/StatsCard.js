@@ -28,7 +28,7 @@ export default function StatCard({ label, value, unit, sub, red, icon }) {
           {value}
           {unit && <span className="stat-unit">{unit}</span>}
         </h3>
-        <p style={{ fontSize: "12px" }} className={red ? "red" : "stat-sub"}>
+        <p style={{ fontSize: "11px" }} className={red ? "red" : "stat-sub"}>
           {sub}
         </p>
       </Stack>

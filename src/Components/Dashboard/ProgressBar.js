@@ -26,8 +26,8 @@ export default function BMIBar({ Weight, Height }) {
           "& .MuiLinearProgress-bar": {
             borderRadius: "4px",
             backgroundImage:
-              "linear-gradient(90deg, #155715, #765410, #960c0c)", // ✅
-            backgroundColor: "unset", // ✅ شيل الـ default color
+              "linear-gradient(90deg, #155715, #765410, #960c0c)", 
+            backgroundColor: "unset",
           },
         }}
       />

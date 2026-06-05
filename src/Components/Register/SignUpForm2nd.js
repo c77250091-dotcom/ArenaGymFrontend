@@ -2,7 +2,11 @@ import { useCallback, useEffect } from "react";
 import Inputs from "../Inputs";
 import { useSelector, useDispatch } from "react-redux";
 import "../CSS/Global.css";
-import { signUpSecond, submitSignUPSecond , stageTwo } from "../../Slices/RegisterSlice";
+import {
+  signUpSecond,
+  submitSignUPSecond,
+  stageTwo,
+} from "../../Slices/RegisterSlice";
 import { useNavigate } from "react-router-dom";
 
 const signUpFields = [
@@ -49,17 +53,16 @@ export default function SignUp2nd() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-useEffect(() =>{
-  dispatch(stageTwo())
-},[])
-
+  useEffect(() => {
+    dispatch(stageTwo());
+  }, []);
 
   useEffect(() => {
     if (step === 2) {
       navigate("/signUp/3");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step]);
+  }, [step, navigate]);
 
   const handleSignUp = useCallback(
     (label, value) => {

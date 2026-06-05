@@ -128,15 +128,7 @@ export const Trainer = [
 
 export default function Coaches() {
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div className="swipe">
       <Swiper
         effect="coverflow"
         centeredSlides={true}

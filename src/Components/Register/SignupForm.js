@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import Inputs from "../Inputs";
 import { useSelector, useDispatch } from "react-redux";
-import { signUp, submitSignUP } from "../../Slices/RegisterSlice";
+import { signUp, submitSignUP, isRegister } from "../../Slices/RegisterSlice";
 import { useNavigate } from "react-router-dom";
 
 const signUpFields = [
@@ -50,10 +50,10 @@ const signUpFields = [
   },
 ];
 
-function SignUpForm() {
+function SignUpForm({ isMobile }) {
   const state = useSelector((state) => state.data);
   const isValid = useSelector((state) => state.data.isValid);
-    const step = useSelector((state) => state.data.step);
+  const step = useSelector((state) => state.data.step);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const handleSignUp = useCallback(
@@ -68,7 +68,7 @@ function SignUpForm() {
       navigate("/signUp/2");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isValid , step]);
+  }, [isValid, step , navigate]);
 
   const onSubmit = useCallback(() => {
     dispatch(submitSignUP());
@@ -98,6 +98,17 @@ function SignUpForm() {
       >
         Sign Up
       </button>
+      {isMobile.current ? (
+        <p
+          className="fullWidth"
+          onClick={() => dispatch(isRegister())}
+          style={{ cursor: "pointer", marginTop: "10px", textAlign: "center" }}
+        >
+          have an account? <span style={{ color: "red" }}>Log In</span>
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

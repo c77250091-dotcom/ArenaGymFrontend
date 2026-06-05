@@ -10,7 +10,7 @@ export default function MemberShipCard({ Name, Price, Atchivments }) {
     { id: 5, value: Atchivments.five },
   ];
   return (
-    <div className="Membership-card">
+    <div style={{gridColumn:"span 4"}} className="Membership-card">
       <Stack style={{ alignItems: "center" }} direction="column" spacing={2}>
         <span
           style={{

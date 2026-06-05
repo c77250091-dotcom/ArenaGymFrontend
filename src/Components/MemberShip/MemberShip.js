@@ -5,28 +5,9 @@ import CheckIcon from "@mui/icons-material/Check";
 export default function MemberShip({ MemberShipName, Price, Obtain }) {
   return (
     <div className="MemberShip">
-      <header
-        style={{
-          width: "100%",
-          height: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <header className="membership-header">
         <Stack style={{ alignItems: "center" }} direction="column" spacing={3}>
-          <span
-            style={{
-              width: "70px",
-              height: "70px",
-              border: "3px rgb(229, 8, 8) solid",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              
-            }}
-          >
+          <span className="membership-name">
             <p style={{ fontSize: "35px" }}>{MemberShipName.slice(0, 2)}</p>
           </span>
           <p style={{ fontSize: "24px", letterSpacing: "8px" }}>
@@ -55,17 +36,7 @@ export default function MemberShip({ MemberShipName, Price, Obtain }) {
         >
           {Object.values(Obtain).map((item, index) => (
             <Stack style={{ alignItems: "center" }} direction="row" spacing={2}>
-              <span
-                style={{
-                  width: "25px",
-                  height: "25px",
-                  borderRadius: "50%",
-                  border: "2px solid #ae0c0c",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <span className="obtain">
                 <CheckIcon style={{ fontSize: "18px", color: "red" }} />
               </span>
               <p key={index}>{item}</p>

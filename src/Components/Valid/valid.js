@@ -82,44 +82,21 @@ const Stage3Validation = z.object({
 
 export function ValidationStage3(data) {
   let result = Stage3Validation.safeParse(data);
-  if (result.success) {
-    return {};
-  } else {
-    return result.error.flatten().fieldErrors;
-  }
+  return result.success ? {} :result.error.flatten().fieldErrors
 }
 
 export function ValidationStage2(data) {
   let result = Stage2Validation.safeParse(data);
-  if (result.success) {
-    return {};
-  } else {
-    return result.error.flatten().fieldErrors;
-  }
+  return result.success ? {} :result.error.flatten().fieldErrors
 }
 
 export default function ValidationLogin(data) {
   let LoginResult = LoginValidation.safeParse(data);
-  let errors = {};
 
-  if (LoginResult.success) {
-    return {};
-  } else {
-    // LoginResult.error.issues.forEach((issue) => {
-    //   errors[issue.path[0]] = issue.message;
-    // });
-    return LoginResult.error.flatten().fieldErrors;
-  }
-  // eslint-disable-next-line no-unreachable
-  return errors;
+return LoginResult.success ? {} :LoginResult.error.flatten().fieldErrors
 }
 
 export function ValidationSignUp(data) {
   let SignUpResult = SignUpValidation.safeParse(data);
-  if (SignUpResult.success) {
-    return {};
-  } else {
-    return SignUpResult.error.flatten().fieldErrors;
-  }
-  // eslint-disable-next-line no-unreachable
+return SignUpResult.success ? {} :SignUpResult.error.flatten().fieldErrors
 }

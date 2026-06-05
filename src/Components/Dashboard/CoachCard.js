@@ -21,22 +21,12 @@ export default function CoashCard({
     { id: 3, value: Atchivments.three },
   ];
   return (
-    <div className="Coach-card">
+    <div style={{ gridColumn: "span 4" }} className="Coach-card">
       <p style={{ fontSize: "14px" }} className="stat-label">
         Coach Profile
       </p>
       <Stack style={{ alignItems: "center" }} direction="row" spacing={1}>
-        <span
-          style={{
-            width: "70px",
-            height: "70px",
-            border: "3px rgb(229, 8, 8) solid",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <span className="coach-name">
           <p style={{ fontSize: "20px" }}>{NM}</p>
         </span>
         <Stack direction="column" spacing={1}>
@@ -77,22 +67,7 @@ export default function CoashCard({
         }}
       >
         {rows2.map((el) => (
-          <span
-            style={{
-              height: "25px",
-              width: "70px",
-              border: "1px solid red",
-              borderRadius: "20px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "white",
-              fontSize: "10px",
-              background: "rgba(209, 29, 29, 0.2)",
-              whiteSpace: "nowrap",
-            }}
-            key={el.id}
-          >
+          <span className="info-atchivments" key={el.id}>
             {el.value}
           </span>
         ))}

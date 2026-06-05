@@ -6,13 +6,14 @@ import { motion } from "framer-motion";
 
 export default function SignUpSecondStage() {
   return (
-    <div
+    <div className="register"
       style={{
         height: "100vh",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
         flexDirection: "column",
+        overflow:"hidden"
       }}
     >
       <motion.div
