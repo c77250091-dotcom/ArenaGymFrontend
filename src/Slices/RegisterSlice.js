@@ -14,7 +14,6 @@ export const LoginRequest = createAsyncThunk("LoginRequest", async (Data) => {
 });
 
 export const signUpRequest = createAsyncThunk("signUpRequest", async (Data) => {
-  console.log("Data sent to backend:", Data);
   let response = await instance.post("/auth/signUp", Data);
   return response.data;
 });
